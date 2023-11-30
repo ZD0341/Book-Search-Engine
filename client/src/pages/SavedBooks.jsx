@@ -9,10 +9,10 @@ import { removeBookId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 
 const SavedBooks = () => {
-  const { loading, data, error } = useQuery(GET_ME);
+  const { loading, data: { me: userData } = {} } = useQuery(GET_ME);
   const [removeBook, { data: mutationResult }] = useMutation(REMOVE_BOOK);
 
-  console.log('Mutation result:', userData); 
+  console.log('Mutation result:', mutationResult); 
 
 
 
@@ -42,6 +42,8 @@ const SavedBooks = () => {
       console.error(err);
     }
   };
+
+  
 
   // Check if userData exists before rendering
   return (
@@ -79,7 +81,7 @@ const SavedBooks = () => {
           </Container>
         </>
       ) : (
-        <h2>Loading...</h2>
+        <h2>Loading......</h2>
       )}
     </>
   );

@@ -64,10 +64,10 @@ const SearchBooks = () => {
 
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
-    // Find the book in `searchedBooks` state by the matching id
+   
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
   
-    // Get token
+ 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
   
     if (!token) {
@@ -75,16 +75,13 @@ const SearchBooks = () => {
     }
   
     try {
-      // Use the saveBook mutation directly, no need for response.ok check
-      saveBook({
-        variables: { newBook: { ...bookToSave } },
+      const { data } = saveBook({
+        variables: { bookData: { ...bookToSave } },
       });
-  
-      // If book successfully saves to the user's account, save book id to state
+      console.log(savedBookIds);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
-      console.error(err.message);
-      // Handle the error here, if needed
+      console.error(err);
     }
   };
 
