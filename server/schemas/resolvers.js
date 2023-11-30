@@ -44,7 +44,7 @@ const resolvers = {
           );
           return updatedUser;
         }
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError('You need to be logged brosif!');
       },
       removeBook: async (parent, { bookId }, context) => {
         if (context.user) {
@@ -55,7 +55,7 @@ const resolvers = {
           );
           return updatedUser;
         }
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError('You need to be logged dude!');
       },
     },
   };
