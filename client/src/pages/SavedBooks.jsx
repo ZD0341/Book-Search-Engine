@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
@@ -8,9 +9,18 @@ import { removeBookId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 
 const SavedBooks = () => {
-  const { loading, data: { me: userData } = {} } = useQuery(GET_ME);
-  const [removeBook] = useMutation(REMOVE_BOOK);
+  const { loading, data, error } = useQuery(GET_ME);
+  const [removeBook, { data: mutationResult }] = useMutation(REMOVE_BOOK);
 
+  console.log('Mutation result:', userData); 
+
+
+
+
+
+
+
+  
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
